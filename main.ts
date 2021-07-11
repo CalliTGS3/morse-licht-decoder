@@ -12,6 +12,8 @@ let alleZeichen = "**ETIANMSURWDKGOHVF*L*PJBXCYZQ**"
 let schwelleLang = 300
 let neuerBuchstabe = 500
 let schwelleLichtstärke = 200
+let text = ""
+let neuerText = 3000
 basic.showIcon(IconNames.Yes)
 basic.pause(100)
 basic.clearScreen()
@@ -34,11 +36,14 @@ basic.forever(function () {
         }
         if (dauerAus > neuerBuchstabe) {
             if (position > 1) {
-                basic.showString(alleZeichen.charAt(position))
-                basic.pause(10)
-                basic.clearScreen()
+                text = "" + text + alleZeichen.charAt(position)
             }
             position = 1
+        }
+        if (text.length > 0 && dauerAus > neuerText) {
+            basic.showString(text)
+            text = ""
+            basic.clearScreen()
         }
     }
 })
