@@ -10,10 +10,10 @@ let zuletztAn = 0
 let signalAn = false
 let alleZeichen = "**ETIANMSURWDKGOHVF*L*PJBXCYZQ**"
 let schwelleLang = 300
-let neuerBuchstabe = 500
+let schwelleNeuerBuchstabe = 500
 let schwelleLichtstärke = 200
+let schwelleNeuerText = 3000
 let text = ""
-let neuerText = 3000
 basic.showIcon(IconNames.Yes)
 basic.pause(100)
 basic.clearScreen()
@@ -34,13 +34,13 @@ basic.forever(function () {
                 position = 2 * position
             }
         }
-        if (dauerAus > neuerBuchstabe) {
+        if (dauerAus > schwelleNeuerBuchstabe) {
             if (position > 1) {
                 text = "" + text + alleZeichen.charAt(position)
             }
             position = 1
         }
-        if (text.length > 0 && dauerAus > neuerText) {
+        if (text.length > 0 && dauerAus > schwelleNeuerText) {
             basic.showString(text)
             text = ""
             basic.clearScreen()
