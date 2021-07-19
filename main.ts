@@ -1,6 +1,11 @@
 input.onButtonPressed(Button.A, function () {
     basic.showNumber(input.lightLevel())
 })
+input.onButtonPressed(Button.B, function () {
+    schwelleLichtstärke = input.lightLevel() * 1.2
+    basic.showNumber(schwelleLichtstärke)
+})
+let text = ""
 let position = 0
 let dauerAus = 0
 let neuesZeichen = false
@@ -8,17 +13,17 @@ let zuletztAus = 0
 let dauerAn = 0
 let zuletztAn = 0
 let signalAn = false
+let schwelleLichtstärke = 0
 let alleZeichen = "**ETIANMSURWDKGOHVF*L*PJBXCYZQ**"
 let schwelleLang = 300
-let schwelleNeuerBuchstabe = 500
-let schwelleLichtstärke = 200
+let schwelleNeuerBuchstabe = 600
+schwelleLichtstärke = 200
 let schwelleNeuerText = 3000
-let text = ""
 basic.showIcon(IconNames.Yes)
 basic.pause(100)
 basic.clearScreen()
 basic.forever(function () {
-    signalAn = input.lightLevel() > schwelleLichtstärke
+    signalAn = input.lightLevel() > schwelleLichtstärke || pins.digitalReadPin(DigitalPin.P1) == 1
     if (signalAn) {
         zuletztAn = input.runningTime()
         dauerAn = zuletztAn - zuletztAus
